@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tarea3</title>
+</head>
+<body>
+	<p> Codifique una función para conocer la edad de una mascota canina según edad animal. La función recibirá un argumento,
+  la edad de la mascota y calculará la edad basada en la tasa de conversión que 1 año humano equivale a 7 años caninos. 
+  La función retornará el mensaje: “Su mascota tiene N años en edad canina.</p>
+
+	 <script type="text/javascript">
+	 	var nombreMascota = prompt("Nombre de la mascota:  "); // introducir dato
+       	var edadHumana = prompt("La edad de la mascota, según año humano:  "); // introducir dato
+		
+		// Calculando la edad animal
+       	function EdadAnimal (edadHumana)
+        	{ 	var E_Humana = edadHumana;
+        		let EdadAnimal = E_Humana * 7;
+        		return EdadAnimal;
+        	}
+
+        // Imprimiendo los datos introducidos
+		document.write("Nombre de la mascota: " + nombreMascota + '<BR>' +
+        	' Edad Humana: ' + edadHumana + '<BR>' );
+		// Mensaje de alerta en la ventana de navegación
+        window.alert(`\"Su mascota tiene ${EdadAnimal (edadHumana)} años en edad canina\".`);
+        // Imprimiendo el mensaje
+        document.write(' Edad Animal: ' +  EdadAnimal (edadHumana));
+
+    </script>
+    
+    
+</body>
+</html>
