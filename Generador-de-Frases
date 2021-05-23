@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Generador de frases</title>
+	<style>
+		.bold{
+			font-weight:bold;
+		}
+	</style>
+
+
+<script type="text/javascript">
+	
+	var GFrase = function (){
+	var F = document.getElementById('mnemonic').value;
+  F = F.toUpperCase();
+	document.getElementById("frase").innerHTML= '<b  style="color:navy;">' + F + '</b>';
+
+	if (F=='TIERRA'){
+			var TIERRA = ["Técnico" , "Inteligente", "Elabora",  "Rectificador", "Reactivo", "Activo"];
+
+		for (var i = 0; i <= TIERRA.length -1; i++) {
+			// document.write( TIERRA[i] + "<br>");
+			// 1- Creando etiqueta parrafo
+			var nuevaLinea=document.createElement("p");
+			// 2- Creando el contenido de la etiqueta
+			var TextoPalabra= document.createTextNode( TIERRA[i]);
+			// 3- Creando nodo de la etiqueta y el contenido al documento HTML
+			nuevaLinea.appendChild(TextoPalabra);
+			// 4- Agregando atributos a la etiqueta, alineacion izquierda
+			nuevaLinea.setAttribute("align","left");
+			// 5- Especificando el lugar donde se insertara la etiqueta con su contenido en el documento html
+			document.getElementById('frase').appendChild(nuevaLinea);
+		}
+	}
+
+	else if (F=='CREA'){
+			var CREA = ["Creatividad" , "Representativa", "Emprendimiento",  "Avanzado"];
+		for (var i = 0; i <= CREA.length -1; i++) {
+			var nuevaLinea=document.createElement("p");
+			var TextoPalabra= document.createTextNode( CREA[i]);
+			nuevaLinea.appendChild(TextoPalabra);
+			nuevaLinea.setAttribute("align","left");
+			document.getElementById('frase').appendChild(nuevaLinea);
+		}
+	}
+	
+	else if (F=='MUSEO') {
+		var MUSEO = ["Mejora" , "Utilizando", "Sustancias",  "Encontradas", "Organizandolas"];
+		for (var i = 0; i <= MUSEO.length -1; i++) {
+			var nuevaLinea=document.createElement("p");
+			var TextoPalabra= document.createTextNode( MUSEO[i]);
+			nuevaLinea.appendChild(TextoPalabra);
+			nuevaLinea.setAttribute("align","left");
+			document.getElementById('frase').appendChild(nuevaLinea);
+		}
+
+	}
+
+}
+</script>
+
+
+
+
+</head>
+<body>
+<header>
+  <h1>Generador de frases</h1>  
+</header>
+	<section>
+		<article>
+			<form>
+				<label>Escriba una palabra en la caja y esta p&aacute;gina crear&aacute; una frase que le ayudar&aacute; a recordarla.<br/>
+				<input type="text" value="" id="mnemonic" size="50" />
+				</label>
+				<input type="button" value="Generar"  onclick="GFrase();"/><br/>
+				<p>Palabras almacenadas: TIERRA, CREA, MUSEO</p>
+
+				<!-- 
+				<p>Ejemplo: Si escribes TIERRA podr&iacute; generarse una frase como:<br/>
+				<span class="bold">T</span>&eacute;cnico<br/>
+				<span class="bold">I</span>nteligente<br/>
+				<span class="bold">E</span>labora<br/>
+				<span class="bold">R</span>ectificador<br/>
+				<span class="bold">R</span>eactivo<br/>
+				<span class="bold">A</span>ctivo</p>
+				-->
+			</form>
+			<footer>
+				<div id="frase">
+					<b style="color: red;">SIGNIFICADO de la palabra</b>
+				</div>
+				<br><br>
+			</footer>
+		</article>
+	</section>
+
+
+<footer>
+	<small>Derechos de autor 2021</small>
+</footer>
+</body>
+</html>
