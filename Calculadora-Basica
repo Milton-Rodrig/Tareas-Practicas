@@ -31,6 +31,7 @@
 
 	var limpiar = function(a,b){
 		var a = document.getElementById('calculadora').reset();
+		var b = document.getElementById('resultado').innerHTML="";
 	}
 
 	var sumar = function (a,b){
@@ -57,14 +58,22 @@
 		document.getElementById('resultado').innerHTML = a*b;
 	}
 
-	var igual = function (){ }
+	var resultado = function (a,b){
+		var a = parseFloat(document.getElementById('operando1').value);
+		var b = parseFloat(document.getElementById('operando2').value);	
+		document.getElementById('resultado').innerHTML = 
+			"Suma = " + (a+b) + '<br>' +
+			"Resta = " + (a-b) + '<br>' + 
+			"Multiplicacion = " + a*b + '<br>' + 
+			"Division = " + a/b;
+	}
 	
 </script>
 
 </head>
 <body>
 <header id="page_header">
-  <h1>Calculadora</h1>  
+  <h1>Calculadora Basica</h1>  
 </header>
 	<section>
 		<article class="form">
@@ -90,7 +99,7 @@
 				
 			</form>
 			<footer>
-				<div>
+				<div style="height: 300px;">
 					<h3>Resultado: </h3>
 					<p id="resultado">Aqui va el resultado...</p>
 				</div>
