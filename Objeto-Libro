@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="author" content="Milton Antonio Rodriguez Lopez">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<title>modelando-Objeto-Libro</title>
+</head>
+<body>
+	<h1>modelando-Objeto-Libro</h1>
+
+<p>1) <b>¿Cuál es una solución para modelar un objeto tipo libro?</b> Un objeto de este tipo podría contener
+información como: título, autor, isbn, edición, editorial, fecha de publicación, número de páginas, etc.</p>
+<p><b>Respuesta:</b> Considero que podriamos crear una funcion para trabajar el objeto con esa lista de 
+caracteristicas tomando de referencia el orden segun normas APA, para la documentacion de libros  tanto fisicos 
+como digitales. Su construccion seria de la siguiente manera: </p>
+
+<p>2) ¿Qué sugiere para tener una colección objetos libros modelados en Javascript?</p>
+<p>En mi opinion seria bueno crear un formulario para la entrada de los datos del objeto Libro, 
+de tal forma que automaticamente se vayan creando nuevos nodos conforme se agregen nuevos libros, 
+como una base de datos con javascript, en lugar de estar agregando los datos mediante de codigos. </p>
+
+<p>3) <b>¿Qué mejoras sugiere a los modelos propuestos por otros?</b></p>
+<p>Las mejoras que sugiero es organizar los codigos en forma de ficheros o 
+citas de referencia que faciliten las consultas de los libros que se vayan agregando. </p>
+
+	<script type="text/javascript">
+//  función constructora
+function Autor(p_nombre, s_nombre, p_apellido, s_apellido){
+  this.p_nombre = p_nombre;
+  this.s_nombre = s_nombre;
+  this.p_apellido = p_apellido;
+  this.s_apellido = s_apellido;
+}
+
+// Observa el uso de this. para asignar valores a las propiedades del objeto
+// en función de los valores pasados.
+function Fecha(dia, mes, anio) {
+  this.dia = dia;
+  this.mes = mes;
+  this.anio = anio;
+}
+
+function Fecha(dia, mes, anio) {
+  this.dia = dia;
+  this.mes = mes;
+  this.anio = anio;
+}
+
+function Identificador(isbn,doi, url){
+  this.isbn = isbn; // si fuese un libro impreso
+  this.doi = doi; // Si fuese una revista cientifica
+  this.url = url; // si fuese un libro digital
+}
+
+function Libro(autor=Autor(), fecha_publicacion=Fecha(), titulo,  edicion, editorial, paginas, identificador=Identificador()) {
+  this.autor = autor;
+  this.fecha_publicacion = fecha_publicacion;
+  this.titulo = titulo;
+  this.edicion = edicion;
+  this.editorial = editorial;
+  this.paginas = paginas;
+  this.identificador = identificador;
+  }
+
+
+var libro1 = new Libro(
+    new Autor('carlos', 'albert', 'Sanchez', 'Aguirre'), 
+    new Fecha(5,4,1969),
+    "Las mil y una noche", "5ed", "Masson",250, 
+    new Identificador(222222, '', '')
+    );
+var libro2 = new Libro(
+    new Autor('Marco', 'Filiberto', 'Marquez', 'Luna'), 
+    new Fecha(15,09,1993),
+    "Al volar en las nuves", "2ed", "Grisma",120, 
+    new Identificador(44444444, '', 'www.2222')
+    );
+var libro3 = new Libro(
+    new Autor('Kevin', 'Alejandro', 'Alvares', 'Guido'), 
+    new Fecha(23,07,2000),
+    "La mancha", "3ed", "Hitmoore",260, 
+    new Identificador('', '', 'www.amazon.3333')
+    );
+
+
+  var n_libro = [libro1, libro2, libro3];
+
+  document.write(n_libro.map (dato =>  "" + dato.autor.p_apellido + "("+ dato.fecha_publicacion.anio  
+  + "). "+ dato.titulo +  ". "+ dato.edicion + ", "+ dato.editorial + ", p"+ dato.paginas  
+  + ". ISBN: "+ dato.identificador.isbn + ". "+ dato.identificador.url));
+
+
+</script>
+
+
+</body>
+</html>
