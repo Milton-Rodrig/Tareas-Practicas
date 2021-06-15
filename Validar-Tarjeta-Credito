@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ValidarTarjetaCredito</title>
+</head>
+<body>
+  <h1>Ejercicio: Validando Tarjeta de credito mediante objetos</h1>
+  <p>Codificar una función llamada “ValidarTarjetaCredito” que retorne un objeto que indique
+  si el número de tarjeta de crédito es válido (true) o no (false), y si no lo es, 
+  que muestre cuál es el error. <br> Ejemplo (de objeto de retorno): <br> {valido: true, numero: 'a923-3211-9c01-1112' };  <br>
+  { valido: false, numero: 'a923-3211-9c01-1112', error: ‘longitud_erronea’ }</p>
+
+<p>La función recibirá como argumento un número de tarjeta de crédito y validar de acuerdo con las siguientes reglas:</p>
+ 
+ <ul>
+  <li> El número debe contener 16 dígitos, todo número entero.</li>
+  <li>Debe contener al menos 2 dígitos diferentes representados (no pueden ser todos el mismo digito).</li>
+ </ul>
+
+<h1>ValidarTarjetaCredito</h1>
+
+<div class="form">
+    <form action="#" method="post">
+      <div class="form-group">
+          <label>Tipo tarjeta de cr&eacute;dito</label>
+          <select name="tipoTarjeta">
+            <option value="VISA">VISA</option>
+            <option value="MASTERCARD">MasterCard</option>
+            <option value="AMERICANEXPRESS">American Express</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>N&uacute;mero de tarjeta de cr&eacute;dito</label>
+          <input id="numtarjeta" type="text" value="" placeholder="0000-0000-0000-0000" name="numeroTarjeta" size="16" required/>
+          <span class="requerido">*</span>
+        </div>
+        <div class="clear"></div>
+        <div class="form-group">
+          <label>Nombre del tarjetahabiente</label>
+          <input id="tarjetahabiente" type="text" value="" name="tarjetaHabiente" required/>
+          <span class="requerido">*</span>
+        </div>
+        <div class="form-group">
+          <label>Fecha de expiraci&oacute;n</label>
+          <input id="fechaexp" type="text" value="" placeholder="mm-aa" size="5" required />
+          <span class="requerido">*</span>
+        </div>
+        <div class="form-group">
+          <input id="BtnPagar" type="submit" value="Pagar" name="BtnPagar" />
+        </div>
+  </form>
+</div>
+
+
+<script type="text/javascript">
+
+  window.onload=function(){
+    var formulario = document.forms[0];
+    //agregar manejador de evento para el formulario
+    if(document.addEventListener){
+      formulario.addEventListener("submit", validarFormulario);
+    }
+    else if(document.attachEvent){
+      formulario.attachEvent("onsubmit", validarFormulario);
+    }
+  }
+
+  function validarFormulario(event){
+
+
+    // validar tarjeta de crédito formato valido es 4333-3333-3333-3333
+    // 16 digitos en grupos de 4 separados por guión
+    var tarjetaNum = document.getElementById('numtarjeta');
+     if (!ValidarTarjetaCredito(tarjetaNum.value)) 
+       {
+          console.log("valido: false, numero: Longitud Erronea." );
+          event.preventDefault();// No enviar
+          return false; // No válido 
+        }
+ 
+    //validar nombre tarjeta habiente, no debe ser vacío
+    var tarjetaHabiente = document.getElementById("tarjetahabiente");
+    if(tarjetaHabiente.value.trim().length==0){
+      console.log("El Nombre de la tarjeta habiente no puede quedar vacía");
+      event.preventDefault();
+      return false;
+    }
+
+    //validar fecha de experición de tarjeta
+    //formato es mm-aa (dos digitos para mes, guión, dos digitos para año)
+    //por ejemplo: 09-18
+    var ExpiraFecha = document.getElementById('fechaexp');  
+    if(!validarExpira(ExpiraFecha.value)){
+      console.log("Su tarjeta de credito ha expirado");
+      event.preventDefault();// No enviar
+      return false; // No válido
+    }
+
+
+    //Si todo fue validado, retornar true
+    console.log("Ok. Pago realizado");
+    // window.alert("Su pago ha sido exitoso");
+    return true;
+}
+
+function validarHabiente(tarjetahabiente){
+  var habTarj = /^[A-Za-z]*\s[A-Za-z]*\s[A-Za-z]*?\s[A-Za-z]*/;
+  return habTarj.test(tarjetahabiente);
+}
+
+function validarExpira(fechaexp){
+  var Fecha = /^\d{2}-\d{2}/;
+  return Fecha.test(fechaexp);
+}
+
+/*
+  var tarjetaCredito = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
+  Visa = /^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/;
+  Mastercard= /^5[1-5]\d{2}-?\d{4}-?\d{4}-?\d{4}$/; 
+*/
+
+
+
+function ValidarTarjetaCredito(tarjetaNum){
+      let numtarjeta =  /^\d{4}-\d{4}-\d{4}-\d{4}/;
+
+      this.getNum = function(){
+        return numtarjeta;
+      }
+
+      this.Valido= function(){
+        var Visa = /^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/;
+        let Mastercard = /^5[1-5]\d{2}-?\d{4}-?\d{4}-?\d{4}$/;
+        let AmericanExpres = /^7[1-6]\d{2}-?\d{4}-?\d{4}-?\d{4}$/;
+
+        if (numtarjeta === Visa) {
+            console.log( "valido: true, numero: " + this.getNum());
+            
+        } else if (numtarjeta === Mastercard) {
+            console.log( "valido: true, numero: " + this.getNum());
+            
+        } else if (numtarjeta === AmericanExpres) {
+          console.log( "valido: true, numero: " + this.getNum() );
+          
+        }
+        else{
+            console.log( "valido: false, numero: " + this.getNum() + ", error: ‘numero de tarjeta invalida’");
+            event.preventDefault();// No enviar
+            return false;
+        }
+        
+      }
+    }
+
+
+
+/*
+function Visa(visa){
+    var Visa = /^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/;
+    return Visa.test(visa);
+}
+function Mastercard (mastercard){
+    let Mastercard = /^5[1-5]\d{2}-?\d{4}-?\d{4}-?\d{4}$/;
+    return Mastercard.test(mastercard);
+}
+function AmericanExpres(americanExpres){
+  let AmericanExpres = /^7[1-6]\d{2}-?\d{4}-?\d{4}-?\d{4}$/;
+  return AmericanExpres.test(americanExpres);
+}
+function OtraTarjeta(tarjetaNum){
+    var tarjetaCredito = /^\d{4}-\d{4}-\d{4}-\d{4}/;
+    console.log("false, tarjeta invalida")
+    return false;
+}
+
+
+function TipoTarjeta (visa,mastercard,americanExpres, otraTarj){
+  this.visa=visa;
+  this.mastercard=mastercard;
+  this.americanExpres=americanExpres;
+  this.otraTarj=otraTarj;
+}
+
+
+function ValidarTarjetaCredito(tipoTarjeta,tarjetaNum){
+  this.tipoTarjeta=tipoTarjeta;
+  this.tarjetaNum=tarjetaNum;
+}
+*/
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
